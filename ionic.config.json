@@ -1,0 +1,7 @@
+{
+  "name": "tesis-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
