@@ -1,0 +1,11 @@
+.page {
+    --ion-background-color: #4b55c1 !important;
+    height: 100vh;
+}
+
+.form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
