@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import styles from './SignIn.module.css';
 import { IonContent, IonPage } from '@ionic/react';
 import SignInService from '../../services/SignIn/SignIn';
@@ -9,7 +10,9 @@ interface IProps {
 };
 
 interface IState { 
-    user?: any
+    user?: any,
+    error: boolean,
+    errorMsg: string
 };
 
 class SignIn extends React.Component<IProps, IState> {
@@ -21,7 +24,9 @@ class SignIn extends React.Component<IProps, IState> {
             user: {
                 email: '',
                 password: ''
-            }
+            },
+            error: false,
+            errorMsg: ''
         };
     }
 
@@ -42,11 +47,12 @@ class SignIn extends React.Component<IProps, IState> {
     }
 
     signIn = async () => {
-        let user: any = await SignInService.SignIn(this.state.user)
+        let user: any = await SignInService.SignIn(this.state.user).catch((res) => this.setState({ error: true, errorMsg: res.data.error }))
         if (user) {
+          this.setState({ error: false })
           await localStorage.setItem('token', user.token)
           await localStorage.setItem('user', JSON.stringify(user.user))
-          await this.props.history.push('/dash')
+          await this.props.history.push('/products')
         };
     }
 
@@ -55,7 +61,7 @@ class SignIn extends React.Component<IProps, IState> {
             <IonPage>
             <IonContent fullscreen className={styles.page}>
                 <div className={styles.form}>
-                    <SignInForm user={this.state.user}  handleEmail={this.handleEmail} handlePassword={this.handlePassword} signIn={this.signIn} />
+                    <SignInForm user={this.state.user} error={this.state.error} errorMsg={this.state.errorMsg} handleEmail={this.handleEmail} handlePassword={this.handlePassword} signIn={this.signIn} />
                 </div>
             </IonContent>
             </IonPage>

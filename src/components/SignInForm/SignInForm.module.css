@@ -58,3 +58,7 @@ input {
     background-color: #f96c89;
     border-radius: 20px;
 }
+
+.alert {
+    margin-top: 10px;
+}

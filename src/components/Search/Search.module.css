@@ -1,0 +1,17 @@
+.content {
+    width: 100%;
+    text-align: center;
+}
+
+.search {
+    margin-top: 9px !important;
+    width: 80%;
+}
+
+input {
+    font: small !important;
+}
+
+.label_input {
+    font-size: small !important;
+}

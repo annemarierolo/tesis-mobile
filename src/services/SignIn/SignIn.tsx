@@ -1,10 +1,12 @@
-import axios from 'axios'
+import axios from 'axios';
+import { testhost } from '../../enviroment';
 
 const SignInService = { 
 
     async SignIn(user: any) {
+        user['device'] = 'mobile';
         return new Promise(async (resolve, reject) => {
-            const url = 'http://localhost:5000/api/v1/login'
+            const url = `http://${testhost}/api/v1/login`;
             const headers = {
             'x-access-token': ''
             }

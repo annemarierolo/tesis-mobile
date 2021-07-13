@@ -1,4 +1,5 @@
 import styles from './SignInForm.module.css';
+import { Alert } from '@material-ui/lab';
 
 /* interface ContainerProps { } */
 
@@ -16,7 +17,7 @@ const SignInForm = (props: any) => {
                 </div>
                 <input 
                     type='email'
-                    placeholder='Correo Electronico'
+                    placeholder='Correo Electrónico'
                     onChange={(event) => props.handleEmail(event.target.value) }
                     value={props.user.email}
                 />
@@ -43,6 +44,9 @@ const SignInForm = (props: any) => {
                     Iniciar Sesión
                 </button>
             </div>
+
+            { (props.error) ? <Alert className={styles.alert} severity="error">{props.errorMsg}</Alert> : null }
+
         </div>
     </div>
   );
